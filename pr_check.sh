@@ -2,8 +2,6 @@
 # NOTE: if you need to debug this file, use DRY_RUN=true to echo docker/podman/oc commands without running them
 
 # before we run common consoledot builds, prepare the binary artifacts for quarkus style builds
-./podman_run.sh
-
 source cicd_common.sh
 
 export APP_NAME="rhsm"  # name of app-sre "application" folder this component lives in
@@ -21,8 +19,8 @@ export IQE_PARALLEL_ENABLED="false"
 
 
 # Install bonfire repo/initialize
-CICD_URL=https://raw.githubusercontent.com/RedHatInsights/bonfire/master/cicd
-curl -s $CICD_URL/bootstrap.sh > .cicd_bootstrap.sh && source .cicd_bootstrap.sh
+CICD_URL=https://raw.githubusercontent.com/RedHatInsights/cicd-tools/main/bootstrap.sh
+curl -s "$CICD_URL" > .cicd_bootstrap.sh && source .cicd_bootstrap.sh
 # Borrow the venv that bonfire sets up to do validation of our topic references
 
 # Disable the validation of topics for now until SWATCH-1904 is resolved.
